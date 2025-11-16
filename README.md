@@ -8,7 +8,28 @@ The project follows a standard ML pipeline, culminating in the selection of a hi
 
 ## 🎯 Project Goal
 
-The primary objective is to develop a robust binary classification model that accurately predicts whether a crop will achieve "Good Growth" (1) or "Poor Growth" (0) given a set of input parameters. This is intended to provide actionable insights for optimizing agricultural conditions
+The primary objective is to develop a robust binary classification model that accurately predicts whether a crop will achieve "Good Growth" (1) or "Poor Growth" (0) given a set of input parameters. This is intended to provide actionable insights for optimizing agricultural conditions.
+
+---
+
+## ✨ Features
+
+### Machine Learning Model
+
+- Uses **XGBoost** for predicting crop growth status.
+- Model trained on features like **PH Value**, **Potassium (ppm)**, **Phosphorus (ppm)**, **Soil Type**, and environmental conditions like **Temperature**, **Humidity**, and **Sunlight hours**.
+
+### Flask API
+
+- The backend is built using **Flask**, which exposes an API endpoint `/predict` for making predictions based on user input.
+
+### Front-End
+
+- A modern, user-friendly **form-based interface** built using **Tailwind CSS**.
+- **Dropdowns** for categorical inputs like Crop Type and Soil Type.
+- **Number input fields** for continuous values like PH Value, Potassium, Phosphorus, Sunlight Hours, Temperature, and Humidity.
+
+---
 
 ## 📊 Dataset and Features
 
@@ -76,6 +97,65 @@ Based on the trained XGBoost model's feature importance analysis, the top 5 feat
 5.  Sunlight Hours
 
 These rankings are indicative; re-training with more data or using SHAP explanations will provide deeper insight.
+
+---
+
+## 📦 Installation and Setup
+
+### 1. Clone the Repository
+
+Clone this repository to your local machine:
+
+```bash
+git clone https://github.com/ShanukaAlahakoon/crop-growth.git
+cd crop-growth/backend
+```
+
+### 2. Set up Virtual Environment
+
+It's recommended to use a virtual environment to keep your dependencies isolated:
+
+**On Windows (PowerShell):**
+
+```powershell
+python -m venv venv
+.\venv\Scripts\activate
+```
+
+**On Mac/Linux:**
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+Install all the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+The `requirements.txt` includes:
+
+- **Flask** — Backend API framework
+- **Joblib** — For loading and saving machine learning models
+- **XGBoost** — The ML model used for predictions
+- **Pandas** — For data handling
+- **Scikit-learn** — For preprocessing and model utilities
+
+### 4. Run the Flask App
+
+Run the application locally:
+
+```bash
+python app.py
+```
+
+The Flask development server will start at `http://127.0.0.1:5000/`.
+
+Open your browser and navigate to `http://127.0.0.1:5000/` to access the web interface.
 
 ---
 
