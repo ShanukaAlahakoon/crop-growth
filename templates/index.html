@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌱 Modern Crop Growth Predictor</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind Configuration for custom colors and shadows
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              "primary-green": "#10B981",
+              "primary-dark": "#0A0D14",
+              "accent-gray": "#F3F4F6",
+              "success-light": "#D1FAE5",
+            },
+            boxShadow: {
+              "custom-3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.2)",
+              "green-glow": "0 0px 30px -5px rgba(16, 185, 129, 0.5)",
+            },
+            animation: {
+              "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .bg-subtle-pattern {
+        background-color: #f7f9fb;
+        background-image: radial-gradient(#d1d5db 0.5px, transparent 0.5px);
+        background-size: 10px 10px;
+      }
+      /* Custom styling for dropdowns to remove default arrow */
+      .custom-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-subtle-pattern min-h-screen flex items-center justify-center font-sans p-4"
+  >
+    <div
+      class="w-full max-w-3xl bg-white p-6 sm:p-10 rounded-2xl shadow-custom-3xl border border-gray-100 backdrop-blur-sm"
+    >
+      <header class="text-center mb-10 border-b border-accent-gray pb-6">
+        <div
+          class="inline-block p-3 rounded-full bg-primary-green/10 text-primary-green mb-3"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 8a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm1 4a1 1 0 100 2h4a1 1 0 100-2H8z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <h1 class="text-4xl font-extrabold text-primary-dark tracking-tight">
+          Intelligent Crop Forecast
+        </h1>
+        <p class="text-md text-gray-500 mt-2">
+          Harnessing ML to predict optimal **Growth Status** for your crops.
+        </p>
+      </header>
+
+      <form id="predictionForm" class="space-y-8">
+        <fieldset class="border-t border-gray-200 pt-6">
+          <legend class="text-lg font-semibold text-primary-dark mb-4 px-2">
+            1. Crop & Environment 🌿
+          </legend>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="relative">
+              <label
+                for="cropType"
+                class="block text-sm font-medium text-gray-700"
+                >Crop Variety</label
+              >
+              <select
+                id="cropType"
+                class="custom-select mt-1 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-primary-green focus:border-primary-green transition duration-150 bg-white text-primary-dark pr-10"
+              >
+                <option value="Tomato">Tomato 🍅</option>
+                <option value="Capsicum">Capsicum 🌶️</option>
+                <option value="Cabbage">Cabbage 🥬</option>
+                <option value="Brinjal">Brinjal 🍆</option>
+                <option value="Bean">Bean 🌱</option>
+              </select>
+              <div
+                class="pointer-events-none absolute inset-y-0 right-0 top-7 flex items-center px-2 text-gray-700"
+              >
+                <svg
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div class="relative">
+              <label
+                for="soilType"
+                class="block text-sm font-medium text-gray-700"
+                >Soil Medium</label
+              >
+              <select
+                id="soilType"
+                class="custom-select mt-1 block w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-primary-green focus:border-primary-green transition duration-150 bg-white text-primary-dark pr-10"
+              >
+                <option value="Well-drained">Well-drained 🧺</option>
+                <option value="Loamy Soil">Loamy Soil 🍂</option>
+                <option value="Clay Loam">Clay Loam 🧱</option>
+                <option value="Sandy Loam">Sandy Loam 🏖️</option>
+                <option value="Sand Clay Loam">Sand Clay Loam 🏜️</option>
+                <option value="Silty Soil">Silty Soil 🌾</option>
+              </select>
+              <div
+                class="pointer-events-none absolute inset-y-0 right-0 top-7 flex items-center px-2 text-gray-700"
+              >
+                <svg
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="border-t border-gray-200 pt-6">
+          <legend class="text-lg font-semibold text-primary-dark mb-4 px-2">
+            2. Conditions & Soil Chemistry 🔬
+          </legend>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label
+                for="phValue"
+                class="block text-sm font-medium text-gray-500 uppercase mb-1"
+                >PH Value</label
+              >
+              <input
+                type="number"
+                step="0.1"
+                id="phValue"
+                class="mt-1 block w-full p-4 border border-gray-300 rounded-lg shadow-inner placeholder-gray-400 focus:ring-primary-green focus:border-primary-green transition duration-150 text-primary-dark"
+                placeholder="e.g., 6.5"
+              />
+            </div>
+
+            <div>
+              <label
+                for="potassium"
+                class="block text-sm font-medium text-gray-500 uppercase mb-1"
+                >Potassium (ppm)</label
+              >
+              <input
+                type="number"
+                id="potassium"
+                class="mt-1 block w-full p-4 border border-gray-300 rounded-lg shadow-inner placeholder-gray-400 focus:ring-primary-green focus:border-primary-green transition duration-150 text-primary-dark"
+                placeholder="e.g., 250"
+              />
+            </div>
+
+            <div>
+              <label
+                for="phosphorus"
+                class="block text-sm font-medium text-gray-700 uppercase mb-1"
+                >Phosphorus (ppm)</label
+              >
+              <input
+                type="number"
+                id="phosphorus"
+                class="mt-1 block w-full p-4 border border-gray-300 rounded-lg shadow-inner placeholder-gray-400 focus:ring-primary-green focus:border-primary-green transition duration-150 text-primary-dark"
+                placeholder="e.g., 80"
+              />
+            </div>
+
+            <div>
+              <label
+                for="temperature"
+                class="block text-sm font-medium text-gray-700 uppercase mb-1"
+                >Temperature (°C)</label
+              >
+              <input
+                type="number"
+                step="0.1"
+                id="temperature"
+                class="mt-1 block w-full p-4 border border-gray-300 rounded-lg shadow-inner placeholder-gray-400 focus:ring-primary-green focus:border-primary-green transition duration-150 text-primary-dark"
+                placeholder="e.g., 25.5"
+              />
+            </div>
+
+            <div>
+              <label
+                for="sunlight"
+                class="block text-sm font-medium text-gray-700 uppercase mb-1"
+                >Sunlight Hours ☀️</label
+              >
+              <input
+                type="number"
+                step="0.1"
+                id="sunlight"
+                class="mt-1 block w-full p-4 border border-gray-300 rounded-lg shadow-inner placeholder-gray-400 focus:ring-primary-green focus:border-primary-green transition duration-150 text-primary-dark"
+                placeholder="e.g., 9.5"
+              />
+            </div>
+
+            <div>
+              <label
+                for="humidity"
+                class="block text-sm font-medium text-gray-700 uppercase mb-1"
+                >Humidity (%) 💧</label
+              >
+              <input
+                type="number"
+                step="0.1"
+                id="humidity"
+                class="mt-1 block w-full p-4 border border-gray-300 rounded-lg shadow-inner placeholder-gray-400 focus:ring-primary-green focus:border-primary-green transition duration-150 text-primary-dark"
+                placeholder="e.g., 75.2"
+              />
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="pt-4">
+          <button
+            type="submit"
+            class="w-full px-6 py-3 bg-gradient-to-r from-primary-green to-green-400 text-white font-extrabold text-xl rounded-lg shadow-green-glow hover:from-green-500 hover:to-green-400 focus:outline-none focus:ring-4 focus:ring-primary-green focus:ring-opacity-70 transition duration-300 transform hover:scale-[1.01]"
+          >
+            PREDICT CROP GROWTH STATUS
+          </button>
+        </div>
+      </form>
+
+      <div
+        id="predictionResult"
+        class="mt-10 text-center p-6 rounded-xl border border-primary-dark/20 text-2xl font-extrabold text-primary-dark min-h-[5rem] flex items-center justify-center bg-accent-gray shadow-inner"
+      >
+        Prediction will appear here.
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("predictionForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Collect input values
+          const inputData = {
+            "Crop type": document.getElementById("cropType").value,
+            "PH Value": document.getElementById("phValue").value,
+            "Potassium (ppm)": document.getElementById("potassium").value,
+            "Phosphorus (ppm)": document.getElementById("phosphorus").value,
+            "Soil Type": document.getElementById("soilType").value,
+            "Sunlight Hours": document.getElementById("sunlight").value,
+            "Temperature (°C)": document.getElementById("temperature").value,
+            "Humidity (%)": document.getElementById("humidity").value,
+          };
+
+          // Update result section appearance for loading state
+          const resultElement = document.getElementById("predictionResult");
+
+          // Reset styling
+          resultElement.classList.remove(
+            "border-primary-green",
+            "text-green-700",
+            "bg-success-light",
+            "border-red-500",
+            "text-red-700",
+            "bg-red-50",
+            "border-primary-dark/20"
+          );
+          resultElement.classList.add(
+            "bg-accent-gray",
+            "border-primary-dark/20",
+            "shadow-inner"
+          );
+
+          resultElement.innerText = "Processing Prediction...";
+
+          resultElement.classList.add(
+            "animate-pulse-fast",
+            "text-gray-500",
+            "border-gray-500/50"
+          );
+
+          // Send data to Flask API (assumes the backend route is /predict)
+          fetch("/predict", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(inputData),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then((data) => {
+              // Display prediction result
+              const predictionText =
+                data.prediction || "Prediction Failed: No data returned.";
+
+              // Remove loading/processing classes
+              resultElement.classList.remove(
+                "animate-pulse-fast",
+                "text-gray-500",
+                "border-gray-500/50",
+                "shadow-inner"
+              );
+
+              // Apply success/failure styling
+              if (
+                predictionText.toLowerCase().includes("good") ||
+                predictionText.toString().includes("1")
+              ) {
+                resultElement.innerText = `✅ FORECAST: GOOD GROWTH (Optimal Conditions)`;
+                resultElement.classList.add(
+                  "border-primary-green",
+                  "text-primary-green",
+                  "bg-success-light",
+                  "shadow-lg"
+                );
+              } else {
+                resultElement.innerText = `⚠️ FORECAST: POOR GROWTH (Sub-Optimal Conditions)`;
+                resultElement.classList.add(
+                  "border-red-500",
+                  "text-red-700",
+                  "bg-red-50",
+                  "shadow-lg"
+                );
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+
+              // Remove loading/processing classes
+              resultElement.classList.remove(
+                "animate-pulse-fast",
+                "text-gray-500",
+                "border-gray-500/50",
+                "shadow-inner"
+              );
+
+              // Display error
+              resultElement.innerText = `❌ ERROR: API Connection Failed.`;
+              resultElement.classList.add(
+                "border-red-500",
+                "text-red-700",
+                "bg-red-50",
+                "shadow-lg"
+              );
+            });
+        });
+    </script>
+  </body>
+</html>

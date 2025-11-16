@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 import joblib
 import pandas as pd
 from pathlib import Path
@@ -37,6 +37,10 @@ def _load_joblib(filename):
 model = _load_joblib('best_growth_model.joblib')
 preprocessor = _load_joblib('preprocessor.joblib')
 feature_names = _load_joblib('feature_names.joblib')
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 # Define the inference function
 def predict_growth_status(input_data):
