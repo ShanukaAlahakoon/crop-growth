@@ -8,7 +8,7 @@ The project follows a standard ML pipeline, culminating in the selection of a hi
 
 ## 🎯 Project Goal
 
-## The primary objective is to develop a robust binary classification model that accurately predicts whether a crop will achieve "Good Growth" (1) or "Poor Growth" (0) given a set of input parameters. This is intended to provide actionable insights for optimizing agricultural conditions
+The primary objective is to develop a robust binary classification model that accurately predicts whether a crop will achieve "Good Growth" (1) or "Poor Growth" (0) given a set of input parameters. This is intended to provide actionable insights for optimizing agricultural conditions
 
 ## 📊 Dataset and Features
 
